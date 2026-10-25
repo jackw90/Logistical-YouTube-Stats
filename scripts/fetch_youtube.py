@@ -1,12 +1,9 @@
-
-import json
-import os
-
 import json
 import os
 from datetime import datetime, timezone
 from urllib.parse import urlencode
 from urllib.request import urlopen
+from urllib.error import HTTPError
 
 API_KEY = os.environ["YOUTUBE_API_KEY"]
 CHANNEL_HANDLE = "Logistical"
