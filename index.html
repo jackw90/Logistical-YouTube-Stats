@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Big Brain Brotherhood — YouTube Stats</title>
+
 <style>
 :root {
   color-scheme: dark;
@@ -20,18 +21,36 @@
   --fill: #a4b9cb;
   --segment-text: #10151b;
 }
+
 * { box-sizing: border-box; }
+
 body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
   font: 14px/1.5 system-ui, "Segoe UI", sans-serif;
 }
-main { max-width: 1060px; margin: auto; padding: 30px 18px 65px; }
-h1 { font-size: clamp(25px,4vw,34px); margin: 0 0 3px; letter-spacing: -.035em; }
-h2 { font-size: 18px; margin: 0 0 16px; }
+
+main {
+  max-width: 1060px;
+  margin: auto;
+  padding: 30px 18px 65px;
+}
+
+h1 {
+  font-size: clamp(25px, 4vw, 34px);
+  margin: 0 0 3px;
+  letter-spacing: -.035em;
+}
+
+h2 {
+  font-size: 18px;
+  margin: 0 0 16px;
+}
+
 p { margin: 6px 0; }
 .muted, small { color: var(--muted); }
+
 header {
   display: flex;
   align-items: center;
@@ -40,6 +59,7 @@ header {
   flex-wrap: wrap;
   margin-bottom: 20px;
 }
+
 .panel {
   border: 1px solid var(--line);
   background: var(--panel);
@@ -47,6 +67,7 @@ header {
   padding: 20px;
   margin-bottom: 16px;
 }
+
 .theme-picker {
   display: flex;
   align-items: center;
@@ -54,6 +75,7 @@ header {
   color: var(--muted);
   font-size: 12px;
 }
+
 .theme-picker select {
   background: var(--panel2);
   color: var(--text);
@@ -63,10 +85,12 @@ header {
   font: inherit;
   cursor: pointer;
 }
+
 .theme-picker select:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
+
 .status {
   display: flex;
   justify-content: space-between;
@@ -75,50 +99,77 @@ header {
   gap: 12px;
   padding: 13px 18px;
 }
+
 .status strong { font-size: 14px; }
-.status p { font-size: 12px; color: var(--muted); margin: 2px 0; }
+
+.status p {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 2px 0;
+}
+
 .status .right { text-align: right; }
+
 .totals {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
   margin-bottom: 22px;
 }
+
 .total {
   padding: 15px 17px;
   background: var(--panel2);
   border: 1px solid var(--line);
   border-radius: 9px;
 }
+
 .total strong {
-  font-size: clamp(25px,3.5vw,35px);
+  font-size: clamp(25px, 3.5vw, 35px);
   font-variant-numeric: tabular-nums;
   display: block;
   line-height: 1.25;
   margin-top: 5px;
 }
+
 .combined-goals {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
   margin: -9px 0 20px;
 }
+
 .combined-goal {
   background: var(--panel2);
   border: 1px solid var(--line);
   border-radius: 9px;
   padding: 12px 15px;
 }
-.goal-heading { font-size: 12px; color: var(--muted); }
+
+.goal-heading {
+  font-size: 12px;
+  color: var(--muted);
+}
+
 .goal-target {
   font-size: 21px;
   font-weight: 800;
   color: var(--text);
   font-variant-numeric: tabular-nums;
 }
-.combined-goal .meter { height: 9px; margin: 9px 0 6px; }
+
+.combined-goal .meter {
+  height: 9px;
+  margin: 9px 0 6px;
+}
+
 .combined-goal .metric-foot { font-size: 12px; }
-.share-label { font-weight: 650; margin: 17px 0 8px; }
+
+.share-label {
+  font-weight: 650;
+  margin: 17px 0 8px;
+}
+
 .stack {
   display: flex;
   width: 100%;
@@ -127,6 +178,7 @@ header {
   border-radius: 7px;
   overflow: hidden;
 }
+
 .segment {
   min-width: 0;
   display: flex;
@@ -137,13 +189,16 @@ header {
   font-weight: 800;
   white-space: nowrap;
 }
+
 .legend {
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(155px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
   gap: 8px 12px;
   margin: 10px 0 15px;
 }
+
 .legend-item { font-size: 12px; }
+
 .dot {
   display: inline-block;
   width: 9px;
@@ -151,32 +206,55 @@ header {
   border-radius: 3px;
   margin-right: 6px;
 }
-.legend-item small { display: block; padding-left: 15px; }
-.advice { font-size: 13px; padding: 13px 18px; }
+
+.legend-item small {
+  display: block;
+  padding-left: 15px;
+}
+
+.advice {
+  font-size: 13px;
+  padding: 13px 18px;
+}
+
 .advice strong { color: var(--accent); }
+
 .board {
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 12px;
   background: var(--panel);
 }
+
 .channel {
   display: grid;
-  grid-template-columns: minmax(200px,1.15fr) minmax(150px,1fr) minmax(150px,1fr);
+  grid-template-columns:
+    minmax(200px, 1.15fr)
+    minmax(150px, 1fr)
+    minmax(150px, 1fr);
   align-items: center;
   gap: 20px;
   padding: 15px 18px;
   border-bottom: 1px solid var(--line);
 }
+
 .channel:last-child { border-bottom: 0; }
-.identity { display: flex; align-items: center; gap: 11px; min-width: 0; }
+
+.identity {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-width: 0;
+}
+
 .rank {
-  color: var(--muted);
   width: 23px;
   flex: none;
   text-align: center;
   font-weight: 750;
+  font-size: 18px;
 }
+
 .avatar {
   width: 42px;
   height: 42px;
@@ -185,36 +263,49 @@ header {
   background: #343d48;
   object-fit: cover;
 }
+
 .channel-name { min-width: 0; }
+
 .channel-name a {
   color: var(--text);
   text-decoration: none;
   font-weight: 700;
 }
+
 .channel-name a:hover { text-decoration: underline; }
+
 .channel-name small { display: block; }
-.metric-name { font-size: 11px; color: var(--muted); }
+
+.metric-name {
+  font-size: 11px;
+  color: var(--muted);
+}
+
 .metric-top {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: 8px;
 }
+
 .metric-top strong {
   font-size: 17px;
   font-variant-numeric: tabular-nums;
 }
+
 .metric-top small {
   font-size: 14px;
   font-weight: 800;
   color: var(--text);
   white-space: nowrap;
 }
+
 .goal-prefix {
   font-size: 11px;
   font-weight: 500;
   color: var(--muted);
 }
+
 .meter {
   height: 7px;
   background: var(--meter);
@@ -222,7 +313,12 @@ header {
   overflow: hidden;
   margin: 7px 0 4px;
 }
-.fill { height: 100%; background: var(--fill); }
+
+.fill {
+  height: 100%;
+  background: var(--fill);
+}
+
 .metric-foot {
   display: flex;
   justify-content: space-between;
@@ -230,7 +326,12 @@ header {
   font-size: 11px;
   color: var(--muted);
 }
-.metric-foot b { color: var(--text); font-weight: 650; }
+
+.metric-foot b {
+  color: var(--text);
+  font-weight: 650;
+}
+
 .section-head {
   display: flex;
   align-items: baseline;
@@ -238,21 +339,40 @@ header {
   gap: 12px;
   margin: 22px 0 12px;
 }
+
 .section-head h2 { margin: 0; }
-.error { color: #ffb6b6; margin: 10px 0; }
-.footnote { font-size: 12px; color: var(--muted); margin-top: 22px; }
+
+.error {
+  color: #ffb6b6;
+  margin: 10px 0;
+}
+
+.footnote {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 22px;
+}
 
 @media (max-width: 730px) {
-  .channel { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .channel {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
   .identity { grid-column: 1 / -1; }
   .status .right { text-align: left; }
   .totals { gap: 8px; }
   .total { padding: 12px; }
-  .legend { grid-template-columns: repeat(2,minmax(0,1fr)); }
+
+  .legend {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
+
 @media (max-width: 540px) {
   .combined-goals { grid-template-columns: 1fr; }
 }
+
 @media (max-width: 410px) {
   .channel { grid-template-columns: 1fr; }
   .identity { grid-column: auto; }
@@ -260,14 +380,16 @@ header {
 }
 </style>
 </head>
+
 <body>
 <main>
 
 <header>
   <div>
     <h1>Big Brain Brotherhood</h1>
-    <p class="muted">Five creators. One leaderboard.</p>
+    <p class="muted">Five creators. One dashboard.</p>
   </div>
+
   <label class="theme-picker" for="theme-select">
     Colour scheme
     <select id="theme-select">
@@ -283,9 +405,13 @@ header {
 
 <section class="panel status">
   <div>
-    <strong>Last updated: <span id="updated">Loading…</span></strong>
+    <strong>
+      Last updated:
+      <span id="updated">Loading…</span>
+    </strong>
     <p id="age">Checking published statistics…</p>
   </div>
+
   <div class="right">
     <strong>Updates every hour</strong>
     <p>YouTube fetch: :07 UTC · Website refresh: every minute</p>
@@ -301,6 +427,7 @@ header {
       <span class="muted">Combined subscribers</span>
       <strong id="total-subs">—</strong>
     </div>
+
     <div class="total">
       <span class="muted">Combined lifetime views</span>
       <strong id="total-views">—</strong>
@@ -329,8 +456,8 @@ header {
 </section>
 
 <div class="section-head">
-  <h2>Channel leaderboard</h2>
-  <small>Ranked by subscribers</small>
+  <h2>Individual Channel Stats</h2>
+  <small>Alphabetical order</small>
 </div>
 
 <div id="error" class="error"></div>
@@ -343,48 +470,54 @@ header {
 </p>
 
 </main>
+
 <script>
 const THEMES = {
   slate: {
-    bg:"#111418",panel:"#1b2026",panel2:"#222830",
-    line:"#323a44",text:"#edf1f5",muted:"#a4afbc",
-    accent:"#9cb7d1",track:"#39414b",meter:"#3b444e",
-    fill:"#a4b9cb",segmentText:"#10151b",scheme:"dark",
+    bg:"#111418", panel:"#1b2026", panel2:"#222830",
+    line:"#323a44", text:"#edf1f5", muted:"#a4afbc",
+    accent:"#9cb7d1", track:"#39414b", meter:"#3b444e",
+    fill:"#a4b9cb", segmentText:"#10151b", scheme:"dark",
     colors:["#93b5c9","#d2ad7c","#9fba9c","#ba9eb5","#8f9fc4"]
   },
+
   midnight: {
-    bg:"#0b1220",panel:"#142033",panel2:"#1c2b43",
-    line:"#30445f",text:"#eef5ff",muted:"#a8b9d1",
-    accent:"#88bfff",track:"#273d5b",meter:"#314b69",
-    fill:"#80b8ee",segmentText:"#0b1522",scheme:"dark",
+    bg:"#0b1220", panel:"#142033", panel2:"#1c2b43",
+    line:"#30445f", text:"#eef5ff", muted:"#a8b9d1",
+    accent:"#88bfff", track:"#273d5b", meter:"#314b69",
+    fill:"#80b8ee", segmentText:"#0b1522", scheme:"dark",
     colors:["#74b4ed","#e0b77e","#89c5bb","#ba9bda","#d28fa9"]
   },
+
   forest: {
-    bg:"#101916",panel:"#1a2923",panel2:"#22362c",
-    line:"#365346",text:"#eef8f0",muted:"#a9c1b1",
-    accent:"#a2d5a7",track:"#304a3d",meter:"#395648",
-    fill:"#9bd3a4",segmentText:"#102017",scheme:"dark",
+    bg:"#101916", panel:"#1a2923", panel2:"#22362c",
+    line:"#365346", text:"#eef8f0", muted:"#a9c1b1",
+    accent:"#a2d5a7", track:"#304a3d", meter:"#395648",
+    fill:"#9bd3a4", segmentText:"#102017", scheme:"dark",
     colors:["#9ac9a0","#d8b77c","#8dbabf","#c2a6bb","#a8b5e0"]
   },
+
   plum: {
-    bg:"#17131b",panel:"#241d2b",panel2:"#302638",
-    line:"#4c3d55",text:"#f8f0fa",muted:"#c4b3cc",
-    accent:"#d5afe6",track:"#49374f",meter:"#574361",
-    fill:"#c6a3dc",segmentText:"#1b1420",scheme:"dark",
+    bg:"#17131b", panel:"#241d2b", panel2:"#302638",
+    line:"#4c3d55", text:"#f8f0fa", muted:"#c4b3cc",
+    accent:"#d5afe6", track:"#49374f", meter:"#574361",
+    fill:"#c6a3dc", segmentText:"#1b1420", scheme:"dark",
     colors:["#c6a3dc","#dfb68b","#9ac4bd","#df9fac","#9cadd7"]
   },
+
   light: {
-    bg:"#f4f6f8",panel:"#ffffff",panel2:"#edf1f5",
-    line:"#d5dde5",text:"#17212b",muted:"#536474",
-    accent:"#2b5d84",track:"#d8e1e9",meter:"#dce5ed",
-    fill:"#527f9e",segmentText:"#14202b",scheme:"light",
+    bg:"#f4f6f8", panel:"#ffffff", panel2:"#edf1f5",
+    line:"#d5dde5", text:"#17212b", muted:"#536474",
+    accent:"#2b5d84", track:"#d8e1e9", meter:"#dce5ed",
+    fill:"#527f9e", segmentText:"#14202b", scheme:"light",
     colors:["#729bb7","#d5a264","#77a48c","#ac8cad","#8292c4"]
   },
+
   contrast: {
-    bg:"#050505",panel:"#111111",panel2:"#1d1d1d",
-    line:"#666666",text:"#ffffff",muted:"#d0d0d0",
-    accent:"#ffffff",track:"#333333",meter:"#444444",
-    fill:"#ffffff",segmentText:"#000000",scheme:"dark",
+    bg:"#050505", panel:"#111111", panel2:"#1d1d1d",
+    line:"#666666", text:"#ffffff", muted:"#d0d0d0",
+    accent:"#ffffff", track:"#333333", meter:"#444444",
+    fill:"#ffffff", segmentText:"#000000", scheme:"dark",
     colors:["#6acbff","#ffd166","#7fe3a0","#ff9ed1","#bba6ff"]
   }
 };
@@ -394,8 +527,26 @@ let lastUpdated = null;
 let currentData = null;
 
 const FEED = "./channels.json";
+
+// These indices preserve the original colour assignments,
+// regardless of the alphabetical display order.
+const CHANNEL_COLORS = {
+  "Kokoplays MB": 0,
+  "VonGalactic": 1,
+  "Logistical": 2,
+  "FallenShogun Gaming": 3,
+  "Spektator": 4
+};
+
+function channelColor(channel) {
+  const index = CHANNEL_COLORS[channel] ?? 0;
+  return COLORS[index % COLORS.length];
+}
+
 const num = x => Math.max(0, Number(x) || 0);
-const fmt = x => Math.round(num(x)).toLocaleString("en-GB");
+
+const fmt = x =>
+  Math.round(num(x)).toLocaleString("en-GB");
 
 function esc(s) {
   return String(s ?? "").replace(/[&<>"']/g, c => ({
@@ -412,14 +563,21 @@ function applyTheme(name) {
   const root = document.documentElement;
 
   const variables = {
-    bg:t.bg,panel:t.panel,panel2:t.panel2,line:t.line,
-    text:t.text,muted:t.muted,accent:t.accent,
-    track:t.track,meter:t.meter,fill:t.fill,
+    bg:t.bg,
+    panel:t.panel,
+    panel2:t.panel2,
+    line:t.line,
+    text:t.text,
+    muted:t.muted,
+    accent:t.accent,
+    track:t.track,
+    meter:t.meter,
+    fill:t.fill,
     "segment-text":t.segmentText
   };
 
   for (const [key,value] of Object.entries(variables)) {
-    root.style.setProperty("--" + key, value);
+    root.style.setProperty("--" + key,value);
   }
 
   root.style.colorScheme = t.scheme;
@@ -431,7 +589,7 @@ function applyTheme(name) {
   if (currentData) render(currentData);
 
   try {
-    localStorage.setItem("bbb-theme", name);
+    localStorage.setItem("bbb-theme",name);
   } catch (e) {}
 }
 
@@ -443,25 +601,29 @@ function goal(value,type) {
     : (value < 10000000 ? 1000000 :
        value < 100000000 ? 5000000 : 10000000);
 
-  return (Math.floor(value / step) + 1) * step;
+  return (Math.floor(value / step)+1)*step;
 }
 
-function metric(label,value,type) {
+function metric(label,value,type,color) {
   const target = goal(value,type);
-  const pct = Math.min(100,value / target * 100);
+  const pct = Math.min(100,value/target*100);
 
   return `
     <div>
       <div class="metric-name">${label}</div>
+
       <div class="metric-top">
         <strong>${fmt(value)}</strong>
         <small>
           <span class="goal-prefix">Goal </span>${fmt(target)}
         </small>
       </div>
+
       <div class="meter">
-        <div class="fill" style="width:${pct}%"></div>
+        <div class="fill"
+             style="width:${pct}%;background:${color}"></div>
       </div>
+
       <div class="metric-foot">
         <span>${fmt(target-value)} to go</span>
         <b>${pct.toFixed(1)}%</b>
@@ -472,7 +634,8 @@ function metric(label,value,type) {
 
 function combinedGoal(value,type) {
   const target = goal(value,type);
-  const pct = Math.min(100,value / target * 100);
+  const pct = Math.min(100,value/target*100);
+
   const label = type === "subs"
     ? "Brotherhood subscriber goal"
     : "Brotherhood view goal";
@@ -480,9 +643,11 @@ function combinedGoal(value,type) {
   return `
     <div class="goal-heading">${label}</div>
     <div class="goal-target">${fmt(target)}</div>
+
     <div class="meter">
       <div class="fill" style="width:${pct}%"></div>
     </div>
+
     <div class="metric-foot">
       <span>${fmt(target-value)} to go</span>
       <b>${pct.toFixed(1)}%</b>
@@ -491,36 +656,42 @@ function combinedGoal(value,type) {
 }
 
 function avatar(c) {
-  const url = c.avatar || c.avatar_url ||
-              c.thumbnail_url || c.thumbnail || "";
+  const url = c.avatar ||
+              c.avatar_url ||
+              c.thumbnail_url ||
+              c.thumbnail ||
+              "";
 
   return /^https:\/\//.test(url)
-    ? `<img class="avatar" src="${esc(url)}"
+    ? `<img class="avatar"
+         src="${esc(url)}"
          alt="${esc(c.channel)} avatar"
-         loading="lazy" referrerpolicy="no-referrer">`
+         loading="lazy"
+         referrerpolicy="no-referrer">`
     : '<div class="avatar" aria-hidden="true"></div>';
 }
 
 function shares(channels,field) {
   const total = channels.reduce(
-    (a,c) => a + num(c[field]),0
+    (a,c) => a+num(c[field]),0
   );
 
-  const pct = c => total ? num(c[field]) / total * 100 : 0;
+  const pct = c =>
+    total ? num(c[field])/total*100 : 0;
 
-  const segments = channels.map((c,i) => `
+  const segments = channels.map(c => `
     <div class="segment"
          style="width:${pct(c)}%;
-                background:${COLORS[i % COLORS.length]}"
+                background:${channelColor(c.channel)}"
          title="${esc(c.channel)}: ${pct(c).toFixed(2)}%">
-      ${pct(c) >= 7 ? pct(c).toFixed(1) + "%" : ""}
+      ${pct(c)>=7 ? pct(c).toFixed(1)+"%" : ""}
     </div>
   `).join("");
 
-  const legend = channels.map((c,i) => `
+  const legend = channels.map(c => `
     <div class="legend-item">
       <span class="dot"
-            style="background:${COLORS[i % COLORS.length]}"></span>
+            style="background:${channelColor(c.channel)}"></span>
       ${esc(c.channel)}
       <b>${pct(c).toFixed(2)}%</b>
       <small>${fmt(c[field])}</small>
@@ -551,7 +722,7 @@ function updateClock() {
 
   document.getElementById("next").textContent =
     "Next scheduled fetch: " +
-    next.toLocaleString("en-GB",opts) + " UK";
+    next.toLocaleString("en-GB",opts)+" UK";
 
   if (lastUpdated && !isNaN(lastUpdated)) {
     const minutes = Math.max(
@@ -559,9 +730,9 @@ function updateClock() {
     );
 
     document.getElementById("age").textContent =
-      minutes < 1
+      minutes<1
         ? "Data less than a minute old"
-        : minutes < 60
+        : minutes<60
         ? `Data ${minutes} minute${minutes===1?"":"s"} old`
         : `Data ${Math.floor(minutes/60)}h ${minutes%60}m old`;
   }
@@ -570,12 +741,16 @@ function updateClock() {
 function render(data) {
   currentData = data;
 
-  if (!Array.isArray(data.channels) || !data.channels.length) {
+  if (!Array.isArray(data.channels) ||
+      !data.channels.length) {
     throw Error("No channels found in channels.json");
   }
 
+  // Alphabetical order, independent of subscriber totals.
   const channels = [...data.channels].sort(
-    (a,b) => num(b.subscribers)-num(a.subscribers)
+    (a,b) => a.channel.localeCompare(b.channel,"en",{
+      sensitivity:"base"
+    })
   );
 
   const totalSubs = channels.reduce(
@@ -586,8 +761,11 @@ function render(data) {
     (a,c) => a+num(c.total_views),0
   );
 
-  document.getElementById("total-subs").textContent = fmt(totalSubs);
-  document.getElementById("total-views").textContent = fmt(totalViews);
+  document.getElementById("total-subs").textContent =
+    fmt(totalSubs);
+
+  document.getElementById("total-views").textContent =
+    fmt(totalViews);
 
   document.getElementById("combined-subs-goal").innerHTML =
     combinedGoal(totalSubs,"subs");
@@ -601,13 +779,14 @@ function render(data) {
   document.getElementById("views-bar").innerHTML =
     shares(channels,"total_views");
 
+  // More than 100,000 means strictly greater than 100,000.
   const qualified = channels
     .filter(c => num(c.subscribers)>100000)
     .map(c => c.channel);
 
-  const names = qualified.length === 1
+  const names = qualified.length===1
     ? qualified[0]
-    : qualified.length > 1
+    : qualified.length>1
     ? qualified.slice(0,-1).join(", ") +
       " and " + qualified.at(-1)
     : "";
@@ -621,30 +800,32 @@ function render(data) {
         "Everyone must sit quietly and take notes.";
 
   document.getElementById("board").innerHTML =
-    channels.map((c,i) => {
-      const url = /^UC[\w-]{22}$/.test(c.channel_id || "")
-        ? "https://www.youtube.com/channel/" + c.channel_id
+    channels.map(c => {
+      const url = /^UC[\w-]{22}$/.test(c.channel_id||"")
+        ? "https://www.youtube.com/channel/"+c.channel_id
         : "#";
+
+      const color = channelColor(c.channel);
 
       return `
         <article class="channel">
           <div class="identity">
-            <span class="rank">${i+1}</span>
+            <span class="rank" style="color:${color}">●</span>
+
             ${avatar(c)}
+
             <div class="channel-name">
               <a href="${url}"
                  ${url==="#" ? "" :
                    'target="_blank" rel="noopener noreferrer"'}>
                 ${esc(c.channel)}
               </a>
-              <small>
-                ${i===0 ? "Leaderboard leader" : "Rank #"+(i+1)}
-              </small>
+              <small>Individual channel statistics</small>
             </div>
           </div>
 
-          ${metric("SUBSCRIBERS",num(c.subscribers),"subs")}
-          ${metric("TOTAL VIEWS",num(c.total_views),"views")}
+          ${metric("SUBSCRIBERS",num(c.subscribers),"subs",color)}
+          ${metric("TOTAL VIEWS",num(c.total_views),"views",color)}
         </article>
       `;
     }).join("");
@@ -658,7 +839,7 @@ function render(data) {
           dateStyle:"medium",
           timeStyle:"short",
           timeZone:"Europe/London"
-        }) + " UK";
+        })+" UK";
 
   document.getElementById("error").textContent = "";
   updateClock();
@@ -686,7 +867,7 @@ document.getElementById("theme-select")
   .addEventListener("change",e => applyTheme(e.target.value));
 
 try {
-  applyTheme(localStorage.getItem("bbb-theme") || "slate");
+  applyTheme(localStorage.getItem("bbb-theme")||"slate");
 } catch (e) {
   applyTheme("slate");
 }
