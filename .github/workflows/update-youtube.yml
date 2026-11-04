@@ -1,12 +1,25 @@
+
 name: Update YouTube Statistics
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'scripts/fetch_youtube.py'
+      - '.github/workflows/**'
+
   schedule:
     - cron: '7 * * * *'
+
   workflow_dispatch:
 
 permissions:
   contents: write
+
+concurrency:
+  group: youtube-statistics
+  cancel-in-progress: false
 
 jobs:
   update-stats:
@@ -34,4 +47,3 @@ jobs:
           git diff --cached --quiet && exit 0
           git commit -m "Update YouTube statistics"
           git push
-
