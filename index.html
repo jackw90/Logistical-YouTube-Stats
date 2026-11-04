@@ -4,201 +4,244 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Big Brain Brotherhood | YouTube Stats</title>
+<title>Big Brain Brotherhood — YouTube Stats</title>
 <style>
 :root {
   color-scheme: dark;
-  --bg: #10131c;
-  --panel: #1b2030;
-  --border: #353d51;
-  --text: #f5f6fc;
-  --muted: #aab4c8;
+  --bg: #111418;
+  --panel: #1b2026;
+  --panel2: #222830;
+  --line: #323a44;
+  --text: #edf1f5;
+  --muted: #a4afbc;
 }
 * { box-sizing: border-box; }
 body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font: 15px/1.5 system-ui, "Segoe UI", sans-serif;
+  font: 14px/1.5 system-ui, "Segoe UI", sans-serif;
 }
 main {
-  max-width: 1200px;
+  max-width: 1060px;
   margin: auto;
-  padding: 28px 18px 70px;
+  padding: 30px 18px 65px;
 }
-h1 { font-size: clamp(28px, 5vw, 44px); margin: 0; }
-h2 { margin: 0 0 12px; }
-h3 { margin: 0; }
-p { line-height: 1.6; }
-small, .muted { color: var(--muted); }
-header { margin-bottom: 22px; }
+h1 {
+  font-size: clamp(25px, 4vw, 34px);
+  margin: 0 0 3px;
+}
+h2 { font-size: 18px; margin: 0 0 16px; }
+p { margin: 6px 0; }
+.muted, small { color: var(--muted); }
+header { margin-bottom: 20px; }
 .panel {
+  border: 1px solid var(--line);
   background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 17px;
-  padding: 22px;
-  margin-bottom: 18px;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
 }
-.update {
-  background: #242b40;
-  border-color: #596785;
+.status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 13px 18px;
 }
-.advice {
-  background: #29243b;
-  border-color: #66558c;
+.status strong { font-size: 14px; }
+.status p {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 2px 0;
 }
-.advice strong { color: #decfff; }
+.status .right { text-align: right; }
 .totals {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 15px;
-  margin-bottom: 20px;
+  gap: 12px;
+  margin-bottom: 22px;
 }
 .total {
-  background: #111827;
-  border: 1px solid #384257;
-  border-radius: 12px;
-  padding: 18px;
+  padding: 15px 17px;
+  background: var(--panel2);
+  border: 1px solid var(--line);
+  border-radius: 9px;
 }
-.big {
-  font-size: clamp(26px, 4vw, 39px);
-  font-weight: 800;
+.total strong {
+  font-size: clamp(25px, 3.5vw, 35px);
   font-variant-numeric: tabular-nums;
+  display: block;
+  line-height: 1.25;
+  margin-top: 5px;
+}
+.share-label {
+  font-weight: 650;
+  margin: 17px 0 8px;
 }
 .stack {
   display: flex;
-  height: 27px;
+  width: 100%;
+  height: 28px;
+  background: #39414b;
+  border-radius: 7px;
   overflow: hidden;
-  border-radius: 100px;
-  background: #343c50;
 }
 .segment {
+  min-width: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 0;
-  color: #111827;
+  color: #10151b;
   font-size: 11px;
   font-weight: 800;
   white-space: nowrap;
 }
 .legend {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
-  gap: 10px;
-  margin: 12px 0 24px;
+  grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+  gap: 8px 12px;
+  margin: 10px 0 15px;
 }
 .legend-item { font-size: 12px; }
 .dot {
   display: inline-block;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
+  width: 9px;
+  height: 9px;
+  border-radius: 3px;
   margin-right: 6px;
 }
-.board {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
+.legend-item small {
+  display: block;
+  padding-left: 15px;
 }
-.card {
+.advice {
+  font-size: 13px;
+  padding: 13px 18px;
+}
+.advice strong { color: #d5dfeb; }
+.board {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 12px;
   background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 17px;
-  padding: 21px;
+}
+.channel {
+  display: grid;
+  grid-template-columns:
+    minmax(200px, 1.15fr)
+    minmax(150px, 1fr)
+    minmax(150px, 1fr);
+  align-items: center;
+  gap: 20px;
+  padding: 15px 18px;
+  border-bottom: 1px solid var(--line);
+}
+.channel:last-child { border-bottom: 0; }
+.identity {
+  display: flex;
+  align-items: center;
+  gap: 11px;
   min-width: 0;
 }
-.card:first-child { border-color: #c4a15d; }
-.channel-head {
-  display: flex;
-  gap: 13px;
-  align-items: center;
-  margin-bottom: 17px;
-}
 .rank {
-  background: #333c50;
-  border-radius: 10px;
-  padding: 10px;
-  font-weight: 800;
+  color: var(--muted);
+  width: 23px;
+  flex: none;
+  text-align: center;
+  font-weight: 750;
 }
 .avatar {
-  width: 55px;
-  height: 55px;
+  width: 42px;
+  height: 42px;
+  flex: none;
   border-radius: 50%;
+  background: #343d48;
   object-fit: cover;
-  background: #3a4255;
 }
-.channel-name { overflow-wrap: anywhere; }
+.channel-name { min-width: 0; }
 .channel-name a {
-  color: inherit;
+  color: var(--text);
   text-decoration: none;
+  font-weight: 700;
 }
 .channel-name a:hover { text-decoration: underline; }
-.metric {
-  border-top: 1px solid var(--border);
-  padding: 15px 0;
+.channel-name small { display: block; }
+.metric-name {
+  font-size: 11px;
+  color: var(--muted);
 }
-.metric-head {
+.metric-top {
   display: flex;
+  align-items: baseline;
   justify-content: space-between;
-  align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
-.metric-value {
-  font-size: 26px;
-  font-weight: 800;
+.metric-top strong {
+  font-size: 17px;
   font-variant-numeric: tabular-nums;
 }
-.goal {
-  margin: 12px 0;
-  padding: 14px;
-  background: #302c49;
-  border: 1px solid #625782;
-  border-radius: 12px;
-}
-.goal.views {
-  background: #213147;
-  border-color: #426a92;
-}
-.goal-label {
+.metric-top small {
   font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: .08em;
-  color: #c8c4df;
+  white-space: nowrap;
 }
-.goal-value {
-  font-size: 27px;
-  font-weight: 850;
-}
-.progress {
-  height: 11px;
-  border-radius: 99px;
+.meter {
+  height: 7px;
+  background: #3b444e;
+  border-radius: 20px;
   overflow: hidden;
-  background: #3a4255;
+  margin: 7px 0 4px;
 }
-.progress-fill {
+.fill {
   height: 100%;
-  background: #b6a0ff;
+  background: #a4b9cb;
 }
-.progress.views .progress-fill {
-  background: #62ade9;
-}
-.progress-text {
+.metric-foot {
   display: flex;
   justify-content: space-between;
-  gap: 10px;
-  margin-top: 8px;
-  font-size: 12px;
+  gap: 8px;
+  font-size: 11px;
   color: var(--muted);
 }
-#error { color: #ffb3b3; }
-footer {
-  color: var(--muted);
-  font-size: 12px;
-  margin-top: 25px;
+.metric-foot b {
+  color: var(--text);
+  font-weight: 650;
 }
-@media (max-width: 720px) {
-  .board, .totals { grid-template-columns: 1fr; }
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 22px 0 12px;
+}
+.section-head h2 { margin: 0; }
+.error {
+  color: #ffb6b6;
+  margin: 10px 0;
+}
+.footnote {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 22px;
+}
+@media (max-width: 730px) {
+  .channel {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .identity { grid-column: 1 / -1; }
+  .status .right { text-align: left; }
+  .totals { gap: 8px; }
+  .total { padding: 12px; }
+  .legend {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 410px) {
+  .channel { grid-template-columns: 1fr; }
+  .identity { grid-column: auto; }
+  .totals { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -207,112 +250,84 @@ footer {
 
 <header>
   <h1>Big Brain Brotherhood</h1>
-  <p class="muted">
-    Five YouTube creators. One leaderboard.
-    An unreasonable amount of competition.
-  </p>
+  <p class="muted">Five creators. One leaderboard.</p>
 </header>
 
-<section class="panel update">
-  <h2>Last Updated</h2>
-  <div class="big" id="updated">Loading...</div>
-  <p id="age" class="muted"></p>
-</section>
-
-<section class="panel advice">
-  <strong>👑 Official YouTube Advice Policy</strong>
-  <p id="advice">
-    Checking who is qualified to give YouTube advice...
-  </p>
+<section class="panel status">
+  <div>
+    <strong>Last updated: <span id="updated">Loading…</span></strong>
+    <p id="age">Checking published statistics…</p>
+  </div>
+  <div class="right">
+    <strong>Updates every hour</strong>
+    <p>YouTube fetch: :07 UTC · Website refresh: every minute</p>
+    <p id="next">Next scheduled fetch: calculating…</p>
+  </div>
 </section>
 
 <section class="panel">
   <h2>Big Brain Brotherhood Stats</h2>
+
   <div class="totals">
     <div class="total">
-      <div class="muted">Combined subscribers</div>
-      <div class="big" id="total-subs">—</div>
+      <span class="muted">Combined subscribers</span>
+      <strong id="total-subs">—</strong>
     </div>
     <div class="total">
-      <div class="muted">Combined lifetime views</div>
-      <div class="big" id="total-views">—</div>
+      <span class="muted">Combined lifetime views</span>
+      <strong id="total-views">—</strong>
     </div>
   </div>
 
-  <h3>Subscriber share</h3>
+  <div class="share-label">Subscriber share</div>
   <div id="subs-bar"></div>
 
-  <h3>View share</h3>
+  <div class="share-label">View share</div>
   <div id="views-bar"></div>
 
-  <p class="muted">
-    Each colour represents a channel's percentage of
-    the Brotherhood's combined total.
+  <p class="muted" style="font-size:12px;margin-top:12px">
+    Each colour shows a channel's share of the Brotherhood total.
   </p>
 </section>
 
-<section class="panel">
-  <h2>How Often Does This Update?</h2>
-  <p>
-    <strong>YouTube API:</strong> GitHub Actions requests
-    fresh statistics every hour at 7 minutes past the
-    hour, UTC. This means 7 minutes past the hour in
-    winter and 7 minutes past the following hour in
-    British Summer Time.
-  </p>
-  <p>
-    <strong>Website:</strong> Checks the published data
-    every 60 seconds. Refreshing the page does not
-    force a new YouTube API request.
-  </p>
-  <p>
-    <strong>Next scheduled fetch:</strong>
-    <span id="next-fetch">Calculating...</span>
-  </p>
-  <p>
-    <strong>Data freshness:</strong> Subscriber counts
-    may be rounded by YouTube, and published statistics
-    can lag behind YouTube Studio. GitHub's scheduled
-    jobs can also run later than expected.
-  </p>
-  <p>
-    If an update fails, the last successfully published
-    statistics remain available.
-  </p>
+<section class="panel advice">
+  <strong>👑 Official YouTube Advice Policy</strong>
+  <p id="advice">Checking who is qualified…</p>
 </section>
 
-<h2>Channel Leaderboard</h2>
-<p class="muted">Automatically ranked by subscriber count.</p>
+<div class="section-head">
+  <h2>Channel leaderboard</h2>
+  <small>Ranked by subscribers</small>
+</div>
 
-<div id="error"></div>
-<section id="board" class="board"></section>
+<div id="error" class="error"></div>
+<section class="board" id="board"></section>
 
-<footer>
-  Powered by the YouTube Data API and GitHub Actions.
-  Statistics update automatically.
-</footer>
+<p class="footnote">
+  Stats are fetched hourly at :07 UTC; the website checks
+  every minute. YouTube figures may be delayed or rounded.
+  If a fetch fails, the last successful figures remain visible.
+</p>
 
 </main>
 
 <script>
-const FEED = "./channels.json";
 const COLORS = [
-  "#b79aff",
-  "#56c9bd",
-  "#f4b86b",
-  "#6ba8f5",
-  "#e989bd"
+  "#93b5c9",
+  "#d2ad7c",
+  "#9fba9c",
+  "#ba9eb5",
+  "#8f9fc4"
 ];
 
+const FEED = "./channels.json";
 let lastUpdated = null;
 
-const fmt = value =>
-  Math.round(Number(value) || 0).toLocaleString("en-GB");
+const num = x => Math.max(0, Number(x) || 0);
+const fmt = x => Math.round(num(x)).toLocaleString("en-GB");
 
-const num = value => Math.max(0, Number(value) || 0);
-
-function escapeHTML(value) {
-  return String(value ?? "").replace(/[&<>"']/g, c => ({
+function esc(s) {
+  return String(s ?? "").replace(/[&<>"']/g, c => ({
     "&": "&amp;",
     "<": "&lt;",
     ">": "&gt;",
@@ -321,108 +336,75 @@ function escapeHTML(value) {
   })[c]);
 }
 
-function nextGoal(value, type) {
-  let step;
-
-  if (type === "subs") {
-    step = value < 10000 ? 1000 :
-           value < 100000 ? 10000 :
-           value < 1000000 ? 25000 : 100000;
-  } else {
-    step = value < 10000000 ? 1000000 :
-           value < 100000000 ? 5000000 : 10000000;
-  }
+function goal(value, type) {
+  const step = type === "subs"
+    ? (value < 10000 ? 1000 :
+       value < 100000 ? 10000 :
+       value < 1000000 ? 25000 : 100000)
+    : (value < 10000000 ? 1000000 :
+       value < 100000000 ? 5000000 : 10000000);
 
   return (Math.floor(value / step) + 1) * step;
 }
 
-function metric(title, value, type) {
-  const goal = nextGoal(value, type);
-  const percentage = Math.min(100, value / goal * 100);
-  const remaining = goal - value;
-  const views = type === "views";
+function metric(label, value, type) {
+  const target = goal(value, type);
+  const pct = Math.min(100, value / target * 100);
 
   return `
-    <div class="metric">
-      <div class="metric-head">
-        <strong>${title}</strong>
-        <div class="metric-value">${fmt(value)}</div>
+    <div>
+      <div class="metric-name">${label}</div>
+      <div class="metric-top">
+        <strong>${fmt(value)}</strong>
+        <small>Goal: ${fmt(target)}</small>
       </div>
-
-      <div class="goal ${views ? "views" : ""}">
-        <div class="goal-label">Next milestone</div>
-        <div class="goal-value">${fmt(goal)}</div>
-        <small>${fmt(remaining)} remaining</small>
+      <div class="meter">
+        <div class="fill" style="width:${pct}%"></div>
       </div>
-
-      <div class="progress ${views ? "views" : ""}">
-        <div class="progress-fill"
-             style="width:${percentage}%"></div>
-      </div>
-
-      <div class="progress-text">
-        <span>Progress to next milestone</span>
-        <strong>${percentage.toFixed(1)}%</strong>
+      <div class="metric-foot">
+        <span>${fmt(target - value)} to go</span>
+        <b>${pct.toFixed(1)}%</b>
       </div>
     </div>
   `;
 }
 
-function avatar(channel) {
-  const url = channel.avatar ||
-              channel.avatar_url ||
-              channel.thumbnail_url ||
-              channel.thumbnail ||
-              "";
+function avatar(c) {
+  const url = c.avatar || c.avatar_url ||
+              c.thumbnail_url || c.thumbnail || "";
 
-  if (!/^https:\/\//.test(url)) {
-    return `<div class="avatar"></div>`;
-  }
-
-  return `<img class="avatar"
-               src="${escapeHTML(url)}"
-               alt="${escapeHTML(channel.channel)} avatar"
-               loading="lazy"
-               referrerpolicy="no-referrer">`;
+  return /^https:\/\//.test(url)
+    ? `<img class="avatar" src="${esc(url)}"
+         alt="${esc(c.channel)} avatar"
+         loading="lazy" referrerpolicy="no-referrer">`
+    : '<div class="avatar" aria-hidden="true"></div>';
 }
 
-function breakdown(channels, field) {
+function shares(channels, field) {
   const total = channels.reduce(
-    (sum, channel) => sum + num(channel[field]), 0
+    (a, c) => a + num(c[field]), 0
   );
 
-  const segments = channels.map((channel, i) => {
-    const percentage = total
-      ? num(channel[field]) / total * 100 : 0;
+  const pct = c => total ? num(c[field]) / total * 100 : 0;
 
-    return `
-      <div class="segment"
-           style="width:${percentage}%;
-                  background:${COLORS[i % COLORS.length]}"
-           title="${escapeHTML(channel.channel)}:
-                  ${percentage.toFixed(2)}%">
-        ${percentage >= 6 ? percentage.toFixed(1) + "%" : ""}
-      </div>
-    `;
-  }).join("");
+  const segments = channels.map((c, i) => `
+    <div class="segment"
+         style="width:${pct(c)}%;
+                background:${COLORS[i % COLORS.length]}"
+         title="${esc(c.channel)}: ${pct(c).toFixed(2)}%">
+      ${pct(c) >= 7 ? pct(c).toFixed(1) + "%" : ""}
+    </div>
+  `).join("");
 
-  const legend = channels.map((channel, i) => {
-    const percentage = total
-      ? num(channel[field]) / total * 100 : 0;
-
-    return `
-      <div class="legend-item">
-        <span class="dot"
-              style="background:${COLORS[i % COLORS.length]}">
-        </span>
-        ${escapeHTML(channel.channel)}
-        <br>
-        <strong>${percentage.toFixed(2)}%</strong>
-        <br>
-        <small>${fmt(channel[field])}</small>
-      </div>
-    `;
-  }).join("");
+  const legend = channels.map((c, i) => `
+    <div class="legend-item">
+      <span class="dot"
+            style="background:${COLORS[i % COLORS.length]}"></span>
+      ${esc(c.channel)}
+      <b>${pct(c).toFixed(2)}%</b>
+      <small>${fmt(c[field])}</small>
+    </div>
+  `).join("");
 
   return `
     <div class="stack">${segments}</div>
@@ -432,9 +414,8 @@ function breakdown(channels, field) {
 
 function updateClock() {
   const now = new Date();
-
-  // GitHub cron uses UTC, including during BST.
   const next = new Date(now);
+
   next.setUTCMinutes(7, 0, 0);
 
   if (next <= now) {
@@ -447,26 +428,27 @@ function updateClock() {
     timeZone: "Europe/London"
   };
 
-  document.getElementById("next-fetch").textContent =
-    next.toLocaleString("en-GB", options) + " UK time";
+  document.getElementById("next").textContent =
+    "Next scheduled fetch: " +
+    next.toLocaleString("en-GB", options) + " UK";
 
-  if (lastUpdated) {
+  if (lastUpdated && !isNaN(lastUpdated)) {
     const minutes = Math.max(
       0, Math.floor((now - lastUpdated) / 60000)
     );
 
     document.getElementById("age").textContent =
-      minutes < 1 ? "Data just updated" :
-      minutes < 60 ? `Data is ${minutes} minutes old` :
-      `Data is ${Math.floor(minutes / 60)} hours and
-       ${minutes % 60} minutes old`;
+      minutes < 1
+        ? "Data less than a minute old"
+        : minutes < 60
+        ? `Data ${minutes} minute${minutes === 1 ? "" : "s"} old`
+        : `Data ${Math.floor(minutes / 60)}h ${minutes % 60}m old`;
   }
 }
 
 function render(data) {
-  if (!Array.isArray(data.channels) ||
-      data.channels.length === 0) {
-    throw new Error("No channels found in channels.json");
+  if (!Array.isArray(data.channels) || !data.channels.length) {
+    throw Error("No channels found in channels.json");
   }
 
   const channels = [...data.channels].sort(
@@ -474,74 +456,67 @@ function render(data) {
   );
 
   const totalSubs = channels.reduce(
-    (sum, c) => sum + num(c.subscribers), 0
+    (a, c) => a + num(c.subscribers), 0
   );
 
   const totalViews = channels.reduce(
-    (sum, c) => sum + num(c.total_views), 0
+    (a, c) => a + num(c.total_views), 0
   );
 
-  document.getElementById("total-subs").textContent =
-    fmt(totalSubs);
-
-  document.getElementById("total-views").textContent =
-    fmt(totalViews);
+  document.getElementById("total-subs").textContent = fmt(totalSubs);
+  document.getElementById("total-views").textContent = fmt(totalViews);
 
   document.getElementById("subs-bar").innerHTML =
-    breakdown(channels, "subscribers");
+    shares(channels, "subscribers");
 
   document.getElementById("views-bar").innerHTML =
-    breakdown(channels, "total_views");
+    shares(channels, "total_views");
 
-  // Only channels ABOVE 100,000 subscribers qualify.
-  const qualified = channels.filter(
-    c => num(c.subscribers) > 100000
-  );
+  const qualified = channels
+    .filter(c => num(c.subscribers) > 100000)
+    .map(c => c.channel);
 
-  let adviceText;
+  const names = qualified.length === 1
+    ? qualified[0]
+    : qualified.length > 1
+    ? qualified.slice(0, -1).join(", ") +
+      " and " + qualified.at(-1)
+    : "";
 
-  if (qualified.length === 0) {
-    adviceText =
-      "Nobody is qualified to give YouTube advice yet. " +
-      "Everyone must keep studying.";
-  } else {
-    const names = qualified.map(c => c.channel);
-    const list = names.length === 1
-      ? names[0]
-      : names.slice(0, -1).join(", ") +
-        " and " + names[names.length - 1];
-
-    adviceText =
-      `Only channels with more than 100,000 subscribers ` +
-      `are qualified to give YouTube advice. ` +
-      `Currently qualified: ${list}. ` +
-      `Everyone else must sit quietly and take notes.`;
-  }
-
-  document.getElementById("advice").textContent = adviceText;
+  document.getElementById("advice").textContent =
+    qualified.length
+      ? `Only channels with over 100,000 subscribers may give ` +
+        `YouTube advice. Qualified: ${names}. Everyone else must ` +
+        `sit quietly and take notes.`
+      : "Nobody has over 100,000 subscribers yet. " +
+        "Everyone must sit quietly and take notes.";
 
   document.getElementById("board").innerHTML =
-    channels.map((channel, i) => {
-      const name = escapeHTML(channel.channel);
-      const url = "https://www.youtube.com/channel/" +
-        encodeURIComponent(channel.channel_id || "");
+    channels.map((c, i) => {
+      const url = /^UC[\w-]{22}$/.test(c.channel_id || "")
+        ? "https://www.youtube.com/channel/" + c.channel_id
+        : "#";
 
       return `
-        <article class="card">
-          <div class="channel-head">
-            <div class="rank">${i === 0 ? "👑" : "#" + (i + 1)}</div>
-            ${avatar(channel)}
+        <article class="channel">
+          <div class="identity">
+            <span class="rank">${i + 1}</span>
+            ${avatar(c)}
             <div class="channel-name">
-              <h3>
-                <a href="${url}" target="_blank"
-                   rel="noopener noreferrer">${name}</a>
-              </h3>
-              <small>Rank #${i + 1} by subscribers</small>
+              <a href="${url}"
+                 ${url === "#" ? "" :
+                   'target="_blank" rel="noopener noreferrer"'}>
+                ${esc(c.channel)}
+              </a>
+              <small>
+                ${i === 0 ? "Leaderboard leader" :
+                  "Rank #" + (i + 1)}
+              </small>
             </div>
           </div>
 
-          ${metric("Subscribers", num(channel.subscribers), "subs")}
-          ${metric("Total Views", num(channel.total_views), "views")}
+          ${metric("SUBSCRIBERS", num(c.subscribers), "subs")}
+          ${metric("TOTAL VIEWS", num(c.total_views), "views")}
         </article>
       `;
     }).join("");
@@ -549,13 +524,13 @@ function render(data) {
   lastUpdated = new Date(data.last_updated);
 
   document.getElementById("updated").textContent =
-    isNaN(lastUpdated.getTime())
+    isNaN(lastUpdated)
       ? "Unknown"
       : lastUpdated.toLocaleString("en-GB", {
-          dateStyle: "full",
+          dateStyle: "medium",
           timeStyle: "short",
           timeZone: "Europe/London"
-        }) + " UK time";
+        }) + " UK";
 
   document.getElementById("error").textContent = "";
   updateClock();
@@ -569,7 +544,7 @@ async function load() {
     );
 
     if (!response.ok) {
-      throw new Error("HTTP " + response.status);
+      throw Error("HTTP " + response.status);
     }
 
     render(await response.json());
