@@ -14,6 +14,11 @@
   --line: #323a44;
   --text: #edf1f5;
   --muted: #a4afbc;
+  --accent: #9cb7d1;
+  --track: #39414b;
+  --meter: #3b444e;
+  --fill: #a4b9cb;
+  --segment-text: #10151b;
 }
 * { box-sizing: border-box; }
 body {
@@ -22,25 +27,45 @@ body {
   color: var(--text);
   font: 14px/1.5 system-ui, "Segoe UI", sans-serif;
 }
-main {
-  max-width: 1060px;
-  margin: auto;
-  padding: 30px 18px 65px;
-}
-h1 {
-  font-size: clamp(25px, 4vw, 34px);
-  margin: 0 0 3px;
-}
+main { max-width: 1060px; margin: auto; padding: 30px 18px 65px; }
+h1 { font-size: clamp(25px,4vw,34px); margin: 0 0 3px; letter-spacing: -.035em; }
 h2 { font-size: 18px; margin: 0 0 16px; }
 p { margin: 6px 0; }
 .muted, small { color: var(--muted); }
-header { margin-bottom: 20px; }
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
 .panel {
   border: 1px solid var(--line);
   background: var(--panel);
   border-radius: 12px;
   padding: 20px;
   margin-bottom: 16px;
+}
+.theme-picker {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.theme-picker select {
+  background: var(--panel2);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font: inherit;
+  cursor: pointer;
+}
+.theme-picker select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 .status {
   display: flex;
@@ -51,11 +76,7 @@ header { margin-bottom: 20px; }
   padding: 13px 18px;
 }
 .status strong { font-size: 14px; }
-.status p {
-  font-size: 12px;
-  color: var(--muted);
-  margin: 2px 0;
-}
+.status p { font-size: 12px; color: var(--muted); margin: 2px 0; }
 .status .right { text-align: right; }
 .totals {
   display: grid;
@@ -70,21 +91,39 @@ header { margin-bottom: 20px; }
   border-radius: 9px;
 }
 .total strong {
-  font-size: clamp(25px, 3.5vw, 35px);
+  font-size: clamp(25px,3.5vw,35px);
   font-variant-numeric: tabular-nums;
   display: block;
   line-height: 1.25;
   margin-top: 5px;
 }
-.share-label {
-  font-weight: 650;
-  margin: 17px 0 8px;
+.combined-goals {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: -9px 0 20px;
 }
+.combined-goal {
+  background: var(--panel2);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 12px 15px;
+}
+.goal-heading { font-size: 12px; color: var(--muted); }
+.goal-target {
+  font-size: 21px;
+  font-weight: 800;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.combined-goal .meter { height: 9px; margin: 9px 0 6px; }
+.combined-goal .metric-foot { font-size: 12px; }
+.share-label { font-weight: 650; margin: 17px 0 8px; }
 .stack {
   display: flex;
   width: 100%;
   height: 28px;
-  background: #39414b;
+  background: var(--track);
   border-radius: 7px;
   overflow: hidden;
 }
@@ -93,14 +132,14 @@ header { margin-bottom: 20px; }
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #10151b;
+  color: var(--segment-text);
   font-size: 11px;
   font-weight: 800;
   white-space: nowrap;
 }
 .legend {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+  grid-template-columns: repeat(auto-fit,minmax(155px,1fr));
   gap: 8px 12px;
   margin: 10px 0 15px;
 }
@@ -112,15 +151,9 @@ header { margin-bottom: 20px; }
   border-radius: 3px;
   margin-right: 6px;
 }
-.legend-item small {
-  display: block;
-  padding-left: 15px;
-}
-.advice {
-  font-size: 13px;
-  padding: 13px 18px;
-}
-.advice strong { color: #d5dfeb; }
+.legend-item small { display: block; padding-left: 15px; }
+.advice { font-size: 13px; padding: 13px 18px; }
+.advice strong { color: var(--accent); }
 .board {
   overflow: hidden;
   border: 1px solid var(--line);
@@ -129,22 +162,14 @@ header { margin-bottom: 20px; }
 }
 .channel {
   display: grid;
-  grid-template-columns:
-    minmax(200px, 1.15fr)
-    minmax(150px, 1fr)
-    minmax(150px, 1fr);
+  grid-template-columns: minmax(200px,1.15fr) minmax(150px,1fr) minmax(150px,1fr);
   align-items: center;
   gap: 20px;
   padding: 15px 18px;
   border-bottom: 1px solid var(--line);
 }
 .channel:last-child { border-bottom: 0; }
-.identity {
-  display: flex;
-  align-items: center;
-  gap: 11px;
-  min-width: 0;
-}
+.identity { display: flex; align-items: center; gap: 11px; min-width: 0; }
 .rank {
   color: var(--muted);
   width: 23px;
@@ -168,10 +193,7 @@ header { margin-bottom: 20px; }
 }
 .channel-name a:hover { text-decoration: underline; }
 .channel-name small { display: block; }
-.metric-name {
-  font-size: 11px;
-  color: var(--muted);
-}
+.metric-name { font-size: 11px; color: var(--muted); }
 .metric-top {
   display: flex;
   align-items: baseline;
@@ -183,20 +205,24 @@ header { margin-bottom: 20px; }
   font-variant-numeric: tabular-nums;
 }
 .metric-top small {
-  font-size: 11px;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--text);
   white-space: nowrap;
+}
+.goal-prefix {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
 }
 .meter {
   height: 7px;
-  background: #3b444e;
+  background: var(--meter);
   border-radius: 20px;
   overflow: hidden;
   margin: 7px 0 4px;
 }
-.fill {
-  height: 100%;
-  background: #a4b9cb;
-}
+.fill { height: 100%; background: var(--fill); }
 .metric-foot {
   display: flex;
   justify-content: space-between;
@@ -204,10 +230,7 @@ header { margin-bottom: 20px; }
   font-size: 11px;
   color: var(--muted);
 }
-.metric-foot b {
-  color: var(--text);
-  font-weight: 650;
-}
+.metric-foot b { color: var(--text); font-weight: 650; }
 .section-head {
   display: flex;
   align-items: baseline;
@@ -216,27 +239,19 @@ header { margin-bottom: 20px; }
   margin: 22px 0 12px;
 }
 .section-head h2 { margin: 0; }
-.error {
-  color: #ffb6b6;
-  margin: 10px 0;
-}
-.footnote {
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: 22px;
-}
+.error { color: #ffb6b6; margin: 10px 0; }
+.footnote { font-size: 12px; color: var(--muted); margin-top: 22px; }
+
 @media (max-width: 730px) {
-  .channel {
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
+  .channel { grid-template-columns: 1fr 1fr; gap: 12px; }
   .identity { grid-column: 1 / -1; }
   .status .right { text-align: left; }
   .totals { gap: 8px; }
   .total { padding: 12px; }
-  .legend {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+  .legend { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media (max-width: 540px) {
+  .combined-goals { grid-template-columns: 1fr; }
 }
 @media (max-width: 410px) {
   .channel { grid-template-columns: 1fr; }
@@ -249,8 +264,21 @@ header { margin-bottom: 20px; }
 <main>
 
 <header>
-  <h1>Big Brain Brotherhood</h1>
-  <p class="muted">Five creators. One leaderboard.</p>
+  <div>
+    <h1>Big Brain Brotherhood</h1>
+    <p class="muted">Five creators. One leaderboard.</p>
+  </div>
+  <label class="theme-picker" for="theme-select">
+    Colour scheme
+    <select id="theme-select">
+      <option value="slate">Slate (default)</option>
+      <option value="midnight">Midnight Blue</option>
+      <option value="forest">Forest Green</option>
+      <option value="plum">Deep Plum</option>
+      <option value="light">Clean Light</option>
+      <option value="contrast">High Contrast</option>
+    </select>
+  </label>
 </header>
 
 <section class="panel status">
@@ -279,6 +307,11 @@ header { margin-bottom: 20px; }
     </div>
   </div>
 
+  <div class="combined-goals">
+    <div class="combined-goal" id="combined-subs-goal"></div>
+    <div class="combined-goal" id="combined-views-goal"></div>
+  </div>
+
   <div class="share-label">Subscriber share</div>
   <div id="subs-bar"></div>
 
@@ -304,39 +337,105 @@ header { margin-bottom: 20px; }
 <section class="board" id="board"></section>
 
 <p class="footnote">
-  Stats are fetched hourly at :07 UTC; the website checks
-  every minute. YouTube figures may be delayed or rounded.
-  If a fetch fails, the last successful figures remain visible.
+  Stats are fetched hourly at :07 UTC; the website checks every minute.
+  YouTube figures may be delayed or rounded. If a fetch fails,
+  the last successful figures remain visible.
 </p>
 
 </main>
-
 <script>
-const COLORS = [
-  "#93b5c9",
-  "#d2ad7c",
-  "#9fba9c",
-  "#ba9eb5",
-  "#8f9fc4"
-];
+const THEMES = {
+  slate: {
+    bg:"#111418",panel:"#1b2026",panel2:"#222830",
+    line:"#323a44",text:"#edf1f5",muted:"#a4afbc",
+    accent:"#9cb7d1",track:"#39414b",meter:"#3b444e",
+    fill:"#a4b9cb",segmentText:"#10151b",scheme:"dark",
+    colors:["#93b5c9","#d2ad7c","#9fba9c","#ba9eb5","#8f9fc4"]
+  },
+  midnight: {
+    bg:"#0b1220",panel:"#142033",panel2:"#1c2b43",
+    line:"#30445f",text:"#eef5ff",muted:"#a8b9d1",
+    accent:"#88bfff",track:"#273d5b",meter:"#314b69",
+    fill:"#80b8ee",segmentText:"#0b1522",scheme:"dark",
+    colors:["#74b4ed","#e0b77e","#89c5bb","#ba9bda","#d28fa9"]
+  },
+  forest: {
+    bg:"#101916",panel:"#1a2923",panel2:"#22362c",
+    line:"#365346",text:"#eef8f0",muted:"#a9c1b1",
+    accent:"#a2d5a7",track:"#304a3d",meter:"#395648",
+    fill:"#9bd3a4",segmentText:"#102017",scheme:"dark",
+    colors:["#9ac9a0","#d8b77c","#8dbabf","#c2a6bb","#a8b5e0"]
+  },
+  plum: {
+    bg:"#17131b",panel:"#241d2b",panel2:"#302638",
+    line:"#4c3d55",text:"#f8f0fa",muted:"#c4b3cc",
+    accent:"#d5afe6",track:"#49374f",meter:"#574361",
+    fill:"#c6a3dc",segmentText:"#1b1420",scheme:"dark",
+    colors:["#c6a3dc","#dfb68b","#9ac4bd","#df9fac","#9cadd7"]
+  },
+  light: {
+    bg:"#f4f6f8",panel:"#ffffff",panel2:"#edf1f5",
+    line:"#d5dde5",text:"#17212b",muted:"#536474",
+    accent:"#2b5d84",track:"#d8e1e9",meter:"#dce5ed",
+    fill:"#527f9e",segmentText:"#14202b",scheme:"light",
+    colors:["#729bb7","#d5a264","#77a48c","#ac8cad","#8292c4"]
+  },
+  contrast: {
+    bg:"#050505",panel:"#111111",panel2:"#1d1d1d",
+    line:"#666666",text:"#ffffff",muted:"#d0d0d0",
+    accent:"#ffffff",track:"#333333",meter:"#444444",
+    fill:"#ffffff",segmentText:"#000000",scheme:"dark",
+    colors:["#6acbff","#ffd166","#7fe3a0","#ff9ed1","#bba6ff"]
+  }
+};
+
+let COLORS = THEMES.slate.colors;
+let lastUpdated = null;
+let currentData = null;
 
 const FEED = "./channels.json";
-let lastUpdated = null;
-
 const num = x => Math.max(0, Number(x) || 0);
 const fmt = x => Math.round(num(x)).toLocaleString("en-GB");
 
 function esc(s) {
   return String(s ?? "").replace(/[&<>"']/g, c => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;"
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
   })[c]);
 }
 
-function goal(value, type) {
+function applyTheme(name) {
+  const t = THEMES[name] || THEMES.slate;
+  const root = document.documentElement;
+
+  const variables = {
+    bg:t.bg,panel:t.panel,panel2:t.panel2,line:t.line,
+    text:t.text,muted:t.muted,accent:t.accent,
+    track:t.track,meter:t.meter,fill:t.fill,
+    "segment-text":t.segmentText
+  };
+
+  for (const [key,value] of Object.entries(variables)) {
+    root.style.setProperty("--" + key, value);
+  }
+
+  root.style.colorScheme = t.scheme;
+  COLORS = t.colors;
+
+  document.getElementById("theme-select").value =
+    name in THEMES ? name : "slate";
+
+  if (currentData) render(currentData);
+
+  try {
+    localStorage.setItem("bbb-theme", name);
+  } catch (e) {}
+}
+
+function goal(value,type) {
   const step = type === "subs"
     ? (value < 10000 ? 1000 :
        value < 100000 ? 10000 :
@@ -347,24 +446,46 @@ function goal(value, type) {
   return (Math.floor(value / step) + 1) * step;
 }
 
-function metric(label, value, type) {
-  const target = goal(value, type);
-  const pct = Math.min(100, value / target * 100);
+function metric(label,value,type) {
+  const target = goal(value,type);
+  const pct = Math.min(100,value / target * 100);
 
   return `
     <div>
       <div class="metric-name">${label}</div>
       <div class="metric-top">
         <strong>${fmt(value)}</strong>
-        <small>Goal: ${fmt(target)}</small>
+        <small>
+          <span class="goal-prefix">Goal </span>${fmt(target)}
+        </small>
       </div>
       <div class="meter">
         <div class="fill" style="width:${pct}%"></div>
       </div>
       <div class="metric-foot">
-        <span>${fmt(target - value)} to go</span>
+        <span>${fmt(target-value)} to go</span>
         <b>${pct.toFixed(1)}%</b>
       </div>
+    </div>
+  `;
+}
+
+function combinedGoal(value,type) {
+  const target = goal(value,type);
+  const pct = Math.min(100,value / target * 100);
+  const label = type === "subs"
+    ? "Brotherhood subscriber goal"
+    : "Brotherhood view goal";
+
+  return `
+    <div class="goal-heading">${label}</div>
+    <div class="goal-target">${fmt(target)}</div>
+    <div class="meter">
+      <div class="fill" style="width:${pct}%"></div>
+    </div>
+    <div class="metric-foot">
+      <span>${fmt(target-value)} to go</span>
+      <b>${pct.toFixed(1)}%</b>
     </div>
   `;
 }
@@ -380,14 +501,14 @@ function avatar(c) {
     : '<div class="avatar" aria-hidden="true"></div>';
 }
 
-function shares(channels, field) {
+function shares(channels,field) {
   const total = channels.reduce(
-    (a, c) => a + num(c[field]), 0
+    (a,c) => a + num(c[field]),0
   );
 
   const pct = c => total ? num(c[field]) / total * 100 : 0;
 
-  const segments = channels.map((c, i) => `
+  const segments = channels.map((c,i) => `
     <div class="segment"
          style="width:${pct(c)}%;
                 background:${COLORS[i % COLORS.length]}"
@@ -396,7 +517,7 @@ function shares(channels, field) {
     </div>
   `).join("");
 
-  const legend = channels.map((c, i) => `
+  const legend = channels.map((c,i) => `
     <div class="legend-item">
       <span class="dot"
             style="background:${COLORS[i % COLORS.length]}"></span>
@@ -416,70 +537,78 @@ function updateClock() {
   const now = new Date();
   const next = new Date(now);
 
-  next.setUTCMinutes(7, 0, 0);
+  next.setUTCMinutes(7,0,0);
 
   if (next <= now) {
-    next.setUTCHours(next.getUTCHours() + 1);
+    next.setUTCHours(next.getUTCHours()+1);
   }
 
-  const options = {
-    dateStyle: "medium",
-    timeStyle: "short",
-    timeZone: "Europe/London"
+  const opts = {
+    dateStyle:"medium",
+    timeStyle:"short",
+    timeZone:"Europe/London"
   };
 
   document.getElementById("next").textContent =
     "Next scheduled fetch: " +
-    next.toLocaleString("en-GB", options) + " UK";
+    next.toLocaleString("en-GB",opts) + " UK";
 
   if (lastUpdated && !isNaN(lastUpdated)) {
     const minutes = Math.max(
-      0, Math.floor((now - lastUpdated) / 60000)
+      0,Math.floor((now-lastUpdated)/60000)
     );
 
     document.getElementById("age").textContent =
       minutes < 1
         ? "Data less than a minute old"
         : minutes < 60
-        ? `Data ${minutes} minute${minutes === 1 ? "" : "s"} old`
-        : `Data ${Math.floor(minutes / 60)}h ${minutes % 60}m old`;
+        ? `Data ${minutes} minute${minutes===1?"":"s"} old`
+        : `Data ${Math.floor(minutes/60)}h ${minutes%60}m old`;
   }
 }
 
 function render(data) {
+  currentData = data;
+
   if (!Array.isArray(data.channels) || !data.channels.length) {
     throw Error("No channels found in channels.json");
   }
 
   const channels = [...data.channels].sort(
-    (a, b) => num(b.subscribers) - num(a.subscribers)
+    (a,b) => num(b.subscribers)-num(a.subscribers)
   );
 
   const totalSubs = channels.reduce(
-    (a, c) => a + num(c.subscribers), 0
+    (a,c) => a+num(c.subscribers),0
   );
 
   const totalViews = channels.reduce(
-    (a, c) => a + num(c.total_views), 0
+    (a,c) => a+num(c.total_views),0
   );
 
   document.getElementById("total-subs").textContent = fmt(totalSubs);
   document.getElementById("total-views").textContent = fmt(totalViews);
 
+  document.getElementById("combined-subs-goal").innerHTML =
+    combinedGoal(totalSubs,"subs");
+
+  document.getElementById("combined-views-goal").innerHTML =
+    combinedGoal(totalViews,"views");
+
   document.getElementById("subs-bar").innerHTML =
-    shares(channels, "subscribers");
+    shares(channels,"subscribers");
 
   document.getElementById("views-bar").innerHTML =
-    shares(channels, "total_views");
+    shares(channels,"total_views");
 
   const qualified = channels
-    .filter(c => num(c.subscribers) > 100000)
+    .filter(c => num(c.subscribers)>100000)
     .map(c => c.channel);
 
   const names = qualified.length === 1
     ? qualified[0]
     : qualified.length > 1
-    ? qualified.slice(0, -1).join(", ") +
+    ? qualified.slice(0,-1).join(", ") +
       " and " + qualified.at(-1)
     : "";
 
@@ -492,7 +621,7 @@ function render(data) {
         "Everyone must sit quietly and take notes.";
 
   document.getElementById("board").innerHTML =
-    channels.map((c, i) => {
+    channels.map((c,i) => {
       const url = /^UC[\w-]{22}$/.test(c.channel_id || "")
         ? "https://www.youtube.com/channel/" + c.channel_id
         : "#";
@@ -500,23 +629,22 @@ function render(data) {
       return `
         <article class="channel">
           <div class="identity">
-            <span class="rank">${i + 1}</span>
+            <span class="rank">${i+1}</span>
             ${avatar(c)}
             <div class="channel-name">
               <a href="${url}"
-                 ${url === "#" ? "" :
+                 ${url==="#" ? "" :
                    'target="_blank" rel="noopener noreferrer"'}>
                 ${esc(c.channel)}
               </a>
               <small>
-                ${i === 0 ? "Leaderboard leader" :
-                  "Rank #" + (i + 1)}
+                ${i===0 ? "Leaderboard leader" : "Rank #"+(i+1)}
               </small>
             </div>
           </div>
 
-          ${metric("SUBSCRIBERS", num(c.subscribers), "subs")}
-          ${metric("TOTAL VIEWS", num(c.total_views), "views")}
+          ${metric("SUBSCRIBERS",num(c.subscribers),"subs")}
+          ${metric("TOTAL VIEWS",num(c.total_views),"views")}
         </article>
       `;
     }).join("");
@@ -526,10 +654,10 @@ function render(data) {
   document.getElementById("updated").textContent =
     isNaN(lastUpdated)
       ? "Unknown"
-      : lastUpdated.toLocaleString("en-GB", {
-          dateStyle: "medium",
-          timeStyle: "short",
-          timeZone: "Europe/London"
+      : lastUpdated.toLocaleString("en-GB",{
+          dateStyle:"medium",
+          timeStyle:"short",
+          timeZone:"Europe/London"
         }) + " UK";
 
   document.getElementById("error").textContent = "";
@@ -539,24 +667,33 @@ function render(data) {
 async function load() {
   try {
     const response = await fetch(
-      FEED + "?t=" + Date.now(),
-      { cache: "no-store" }
+      FEED+"?t="+Date.now(),
+      {cache:"no-store"}
     );
 
     if (!response.ok) {
-      throw Error("HTTP " + response.status);
+      throw Error("HTTP "+response.status);
     }
 
     render(await response.json());
   } catch (error) {
     document.getElementById("error").textContent =
-      "Unable to refresh statistics: " + error.message;
+      "Unable to refresh statistics: "+error.message;
   }
 }
 
+document.getElementById("theme-select")
+  .addEventListener("change",e => applyTheme(e.target.value));
+
+try {
+  applyTheme(localStorage.getItem("bbb-theme") || "slate");
+} catch (e) {
+  applyTheme("slate");
+}
+
 load();
-setInterval(load, 60000);
-setInterval(updateClock, 30000);
+setInterval(load,60000);
+setInterval(updateClock,30000);
 updateClock();
 </script>
 </body>
