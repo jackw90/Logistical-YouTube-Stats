@@ -34,3 +34,4 @@ jobs:
           if ! git diff --cached --quiet; then
             git commit -m "Update YouTube statistics"
             git push
+          fi
