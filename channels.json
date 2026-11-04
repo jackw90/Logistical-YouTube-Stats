@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-11-04T21:44:54.263608+00:00",
+  "last_updated": "2026-11-04T22:15:53.167962+00:00",
   "channels": [
     {
       "channel": "Logistical",
@@ -7,15 +7,17 @@
       "subscribers": 17700,
       "total_views": 6186398,
       "video_count": 266,
-      "last_updated": "2026-11-04T21:44:54.010686+00:00"
+      "avatar": "https://yt3.ggpht.com/ytc/AIdro_kzZOpUYs1-wCHTN1okovYVJ93p9hps8VFE4iW-Qdgf6w=s800-c-k-c0x00ffffff-no-rj",
+      "last_updated": "2026-11-04T22:15:52.624333+00:00"
     },
     {
       "channel": "Kokoplays MB",
       "channel_id": "UCtuiEWmLhVjeuLbSDuCtnvA",
       "subscribers": 121000,
-      "total_views": 41796440,
+      "total_views": 41806320,
       "video_count": 7348,
-      "last_updated": "2026-11-04T21:44:54.116874+00:00"
+      "avatar": "https://yt3.ggpht.com/ytc/AIdro_kZofRiGYbeMnadeqHjk94qoUJf5MaHbYmoQpJYTN-LWa0=s800-c-k-c0x00ffffff-no-rj",
+      "last_updated": "2026-11-04T22:15:52.708512+00:00"
     },
     {
       "channel": "FallenShogun Gaming",
@@ -23,7 +25,8 @@
       "subscribers": 14000,
       "total_views": 5750487,
       "video_count": 4809,
-      "last_updated": "2026-11-04T21:44:54.192630+00:00"
+      "avatar": "https://yt3.ggpht.com/ytc/AIdro_mV_IuETS7cUjmXcO1Ebwep4ErOTJnrvx3LuRmGs9YmUPc=s800-c-k-c0x00ffffff-no-rj",
+      "last_updated": "2026-11-04T22:15:52.862162+00:00"
     },
     {
       "channel": "VonGalactic",
@@ -31,7 +34,17 @@
       "subscribers": 26200,
       "total_views": 3124809,
       "video_count": 184,
-      "last_updated": "2026-11-04T21:44:54.263357+00:00"
+      "avatar": "https://yt3.ggpht.com/h10TL78vq01MsZZQyNYGyk2GGn2aPmqStv1X9cMzSQo9kSvOrphHPVGgoMitmBX-q6FdmyVjDA=s800-c-k-c0x00ffffff-no-rj",
+      "last_updated": "2026-11-04T22:15:53.060811+00:00"
+    },
+    {
+      "channel": "Spektator",
+      "channel_id": "UCnEXVvo2uWTgIIeHHG-fAZQ",
+      "subscribers": 122000,
+      "total_views": 6166086,
+      "video_count": 35,
+      "avatar": "https://yt3.ggpht.com/cef43-1EbptRxL4W5ex-l-uudE011sQHC_Du79_RjBqVBh2YA4a7Cx3-7Gk0_1IAQF3wx79uow=s800-c-k-c0x00ffffff-no-rj",
+      "last_updated": "2026-11-04T22:15:53.167927+00:00"
     }
   ]
 }
