@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-11-04T21:42:11.714139+00:00",
+  "last_updated": "2026-11-04T21:44:54.263608+00:00",
   "channels": [
     {
       "channel": "Logistical",
@@ -7,15 +7,15 @@
       "subscribers": 17700,
       "total_views": 6186398,
       "video_count": 266,
-      "last_updated": "2026-11-04T21:42:11.375036+00:00"
+      "last_updated": "2026-11-04T21:44:54.010686+00:00"
     },
     {
-      "channel": "Koko",
-      "channel_id": "UCyFyatDmzYENKJ8HI3IeQ7g",
-      "subscribers": 1,
-      "total_views": 0,
-      "video_count": 0,
-      "last_updated": "2026-11-04T21:42:11.535969+00:00"
+      "channel": "Kokoplays MB",
+      "channel_id": "UCtuiEWmLhVjeuLbSDuCtnvA",
+      "subscribers": 121000,
+      "total_views": 41796440,
+      "video_count": 7348,
+      "last_updated": "2026-11-04T21:44:54.116874+00:00"
     },
     {
       "channel": "FallenShogun Gaming",
@@ -23,7 +23,7 @@
       "subscribers": 14000,
       "total_views": 5750487,
       "video_count": 4809,
-      "last_updated": "2026-11-04T21:42:11.628553+00:00"
+      "last_updated": "2026-11-04T21:44:54.192630+00:00"
     },
     {
       "channel": "VonGalactic",
@@ -31,7 +31,7 @@
       "subscribers": 26200,
       "total_views": 3124809,
       "video_count": 184,
-      "last_updated": "2026-11-04T21:42:11.713866+00:00"
+      "last_updated": "2026-11-04T21:44:54.263357+00:00"
     }
   ]
 }
