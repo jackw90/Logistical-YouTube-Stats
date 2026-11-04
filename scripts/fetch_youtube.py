@@ -7,7 +7,7 @@ from urllib.parse import urlencode
 from urllib.request import urlopen
 
 API_KEY = os.environ['YOUTUBE_API_KEY']
-CHANNEL_HANDLES = ['Logistical', 'KokoPlays', 'FallenShogun', 'VonGalactic']
+CHANNEL_HANDLES = ['Logistical', 'KokoplaysMB', 'FallenShogun', 'VonGalactic']
 
 
 def fetch_channel(handle):
