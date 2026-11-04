@@ -1,4 +1,3 @@
-
 name: Update YouTube Statistics
 
 on:
@@ -31,8 +30,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add stats.json
+          git add stats.json channels.json
           if ! git diff --cached --quiet; then
             git commit -m "Update YouTube statistics"
             git push
-          fi
