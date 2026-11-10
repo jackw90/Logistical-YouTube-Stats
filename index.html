@@ -165,53 +165,6 @@ header {
 
 .combined-goal .metric-foot { font-size: 12px; }
 
-.share-label {
-  font-weight: 650;
-  margin: 17px 0 8px;
-}
-
-.stack {
-  display: flex;
-  width: 100%;
-  height: 28px;
-  background: var(--track);
-  border-radius: 7px;
-  overflow: hidden;
-}
-
-.segment {
-  min-width: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--segment-text);
-  font-size: 11px;
-  font-weight: 800;
-  white-space: nowrap;
-}
-
-.legend {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
-  gap: 8px 12px;
-  margin: 10px 0 15px;
-}
-
-.legend-item { font-size: 12px; }
-
-.dot {
-  display: inline-block;
-  width: 9px;
-  height: 9px;
-  border-radius: 3px;
-  margin-right: 6px;
-}
-
-.legend-item small {
-  display: block;
-  padding-left: 15px;
-}
-
 .advice {
   font-size: 13px;
   padding: 13px 18px;
@@ -439,15 +392,6 @@ header {
     <div class="combined-goal" id="combined-views-goal"></div>
   </div>
 
-  <div class="share-label">Subscriber share</div>
-  <div id="subs-bar"></div>
-
-  <div class="share-label">View share</div>
-  <div id="views-bar"></div>
-
-  <p class="muted" style="font-size:12px;margin-top:12px">
-    Each colour shows a channel's share of the Brotherhood total.
-  </p>
 </section>
 
 <section class="panel advice">
@@ -525,8 +469,10 @@ const THEMES = {
 let COLORS = THEMES.slate.colors;
 let lastUpdated = null;
 let currentData = null;
+let PROFILE_COLORS = {};
 
 const FEED = "./channels.json";
+const COLORS_FEED = "./channel_colors.json";
 
 // These indices preserve the original colour assignments,
 // regardless of the alphabetical display order.
@@ -540,7 +486,7 @@ const CHANNEL_COLORS = {
 
 function channelColor(channel) {
   const id = currentData?.channels?.find(c => c.channel === channel)?.channel_id;
-  return (window.BBB_PROFILE_COLORS?.[id]?.primary) || COLORS[(CHANNEL_COLORS[channel] ?? 0) % COLORS.length];
+  return (PROFILE_COLORS?.[id]?.primary) || COLORS[(CHANNEL_COLORS[channel] ?? 0) % COLORS.length];
 }
 
 const num = x => Math.max(0, Number(x) || 0);
@@ -671,39 +617,6 @@ function avatar(c) {
     : '<div class="avatar" aria-hidden="true"></div>';
 }
 
-function shares(channels,field) {
-  const total = channels.reduce(
-    (a,c) => a+num(c[field]),0
-  );
-
-  const pct = c =>
-    total ? num(c[field])/total*100 : 0;
-
-  const segments = channels.map(c => `
-    <div class="segment"
-         style="width:${pct(c)}%;
-                background:${channelColor(c.channel)}"
-         title="${esc(c.channel)}: ${pct(c).toFixed(2)}%">
-      ${pct(c)>=7 ? pct(c).toFixed(1)+"%" : ""}
-    </div>
-  `).join("");
-
-  const legend = channels.map(c => `
-    <div class="legend-item">
-      <span class="dot"
-            style="background:${channelColor(c.channel)}"></span>
-      ${esc(c.channel)}
-      <b>${pct(c).toFixed(2)}%</b>
-      <small>${fmt(c[field])}</small>
-    </div>
-  `).join("");
-
-  return `
-    <div class="stack">${segments}</div>
-    <div class="legend">${legend}</div>
-  `;
-}
-
 function updateClock() {
   const now = new Date();
   const next = new Date(now);
@@ -773,12 +686,6 @@ function render(data) {
   document.getElementById("combined-views-goal").innerHTML =
     combinedGoal(totalViews,"views");
 
-  document.getElementById("subs-bar").innerHTML =
-    shares(channels,"subscribers");
-
-  document.getElementById("views-bar").innerHTML =
-    shares(channels,"total_views");
-
   // More than 100,000 means strictly greater than 100,000.
   const qualified = channels
     .filter(c => num(c.subscribers)>100000)
@@ -845,6 +752,24 @@ function render(data) {
   updateClock();
 }
 
+async function loadProfileColors() {
+  try {
+    const response = await fetch(COLORS_FEED+"?t="+Date.now(), {cache:"no-store"});
+    if (!response.ok) return;
+    const palette = await response.json();
+    if (palette && typeof palette === "object" && !Array.isArray(palette)) {
+      PROFILE_COLORS = Object.fromEntries(
+        Object.entries(palette).filter(([id, value]) =>
+          /^#[0-9a-fA-F]{6}$/.test(value?.primary || "")
+        )
+      );
+      if (currentData) render(currentData);
+    }
+  } catch (error) {
+    // Fall back to existing theme colours until the palette is published.
+  }
+}
+
 async function load() {
   try {
     const response = await fetch(
@@ -873,10 +798,12 @@ try {
 }
 
 load();
+loadProfileColors();
 setInterval(load,60000);
+setInterval(loadProfileColors,300000);
 setInterval(updateClock,30000);
 updateClock();
 </script>
-  <script src="./bbb-analytics.js"></script>
+<script src="./bbb-analytics.js"></script>
 </body>
 </html>
