@@ -1,0 +1,41 @@
+{
+  "timezone": "UTC",
+  "snapshots": [
+    {
+      "date": "2026-11-10",
+      "recorded_at": "2026-11-10T21:52:54.800035+00:00",
+      "channels": [
+        {
+          "channel_id": "UCSlOWj_ZiUUqAyLBQ5pAaHQ",
+          "channel": "Logistical",
+          "views": 6240598,
+          "subscribers": 17700
+        },
+        {
+          "channel_id": "UCtuiEWmLhVjeuLbSDuCtnvA",
+          "channel": "Kokoplays MB",
+          "views": 41901882,
+          "subscribers": 121000
+        },
+        {
+          "channel_id": "UC7HxHIlGFNmN8fMlQw-TO2A",
+          "channel": "FallenShogun Gaming",
+          "views": 5767064,
+          "subscribers": 14100
+        },
+        {
+          "channel_id": "UC9p5xJotzMEsFqPu91sqXpw",
+          "channel": "VonGalactic",
+          "views": 3184717,
+          "subscribers": 26200
+        },
+        {
+          "channel_id": "UCnEXVvo2uWTgIIeHHG-fAZQ",
+          "channel": "Spektator",
+          "views": 6169477,
+          "subscribers": 122000
+        }
+      ]
+    }
+  ]
+}
