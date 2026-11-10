@@ -42,7 +42,27 @@ const weekPanel=`<div class="bbb-week"><h3>This Week So Far</h3><div class="bbb-
 const points=snapshots.filter(s=>s.date>=a&&s.date<=b).map(s=>({date:s.date,value:diff(add(s.date,-1),s.date)?.[metric]??null}));
 growth.innerHTML=`<h2>Brotherhood Growth</h2><div class="bbb-controls">${[['day','Daily'],['week','Weekly'],['year','This year']].map(([k,n])=>`<button data-period="${k}" class="${period===k?'active':''}">${n}</button>`).join('')}${[['views','Views chart'],['subs','Subscribers chart']].map(([k,n])=>`<button data-metric="${k}" class="${metric===k?'active':''}">${n}</button>`).join('')}</div>${weekPanel}<div class="bbb-summary">${tile('views','Combined views gained')}${tile('subs','Combined subscribers gained')}</div><svg class="bbb-chart" viewBox="0 0 800 190" preserveAspectRatio="none" role="img" aria-label="Combined Brotherhood daily growth"></svg><p class="bbb-note">Combined totals across all tracked channels. No channel-level breakdown. Missing baselines display —. Public subscriber counts may be rounded. Daily snapshots are collected near midnight UTC.</p>`;
 chart(points);growth.querySelectorAll('[data-period]').forEach(b=>b.onclick=()=>{period=b.dataset.period;render()});growth.querySelectorAll('[data-metric]').forEach(b=>b.onclick=()=>{metric=b.dataset.metric;render()});}
-let lastUpload=null;function clock(){if(!lastUpload)return;const ms=Date.now()-new Date(lastUpload).getTime();if(!Number.isFinite(ms)||ms<0)return;const days=Math.floor(ms/86400000),hours=Math.floor(ms%86400000/3600000),mins=Math.floor(ms%3600000/60000);const joke=days>365?'Historians are still searching for evidence of the next upload.':days>90?'We have officially entered the archaeological era.':days>30?'At this point, even the algorithm has filed a missing-person report.':'The upload button remains suspiciously untouched.';missing.innerHTML=`<h2>👻 The Missing Creator</h2><p class="bbb-note" style="text-align:center">TIME SINCE LAST UPLOAD</p><div class="bbb-counter">${fmt(days)} days</div><p class="bbb-joke">${joke}</p><p class="bbb-note" style="text-align:center">Identity classified. This creator is not included in Brotherhood statistics.</p>`;}
+const missingJokeSubjects=["The upload button","The YouTube algorithm","The notification bell","The subscriber count","The editing timeline","The render queue","The thumbnail designer","The channel homepage","The abandoned microphone","The recording software","The analytics dashboard","The community tab","The video description","The end screen","The pinned comment","The content calendar","The premiere countdown","The camera battery","The studio lighting","The capture card","The hard drive","The export settings","The intro sequence","The outro music","The keyboard shortcut","The mouse cursor","The watch-time graph","The recommendations feed","The search bar","The creator dashboard","The upload schedule","The editing chair","The unused tripod","The dusty webcam","The audio waveform","The empty playlist","The scheduled uploads tab","The copyright checker","The progress bar","The Wi-Fi router"];
+const missingJokeEndings=["has filed a missing-person report.","has started a support group for abandoned equipment.","has requested a transfer to a more active channel.","has been spotted updating its CV on LinkedIn.","has officially given up waiting for the next video."];
+const missingJokes=missingJokeSubjects.flatMap(subject=>missingJokeEndings.map(ending=>subject+' '+ending));
+// 40 subjects × 5 punchlines = 200 distinct jokes. Pick on page load, not every clock tick.
+function pickMissingJoke(){
+ let previous=-1;
+ try{previous=Number(sessionStorage.getItem('bbb-last-missing-joke')??-1)}catch(e){}
+ let index=Math.floor(Math.random()*missingJokes.length);
+ if(index===previous)index=(index+1+Math.floor(Math.random()*(missingJokes.length-1)))%missingJokes.length;
+ try{sessionStorage.setItem('bbb-last-missing-joke',String(index))}catch(e){}
+ return missingJokes[index];
+}
+const missingJoke=pickMissingJoke();
+let lastUpload=null;
+function clock(){
+ if(!lastUpload)return;
+ const ms=Date.now()-new Date(lastUpload).getTime();
+ if(!Number.isFinite(ms)||ms<0)return;
+ const days=Math.floor(ms/86400000);
+ missing.innerHTML=`<h2>👻 The Missing Creator</h2><p class="bbb-note" style="text-align:center">TIME SINCE LAST UPLOAD</p><div class="bbb-counter">${fmt(days)} days</div><p class="bbb-joke">${esc(missingJoke)}</p><p class="bbb-note" style="text-align:center">Identity classified. This creator is not included in Brotherhood statistics.</p>`;
+}
 async function load(){try{const r=await fetch('./history.json?t='+Date.now());if(!r.ok)throw Error('History unavailable');const h=await r.json();snapshots=(h.snapshots||[]).map(s=>({date:s.date,channels:Object.fromEntries((s.channels||[]).map(c=>[c.channel_id,c]))})).sort((a,b)=>a.date.localeCompare(b.date));byDate.clear();snapshots.forEach(s=>byDate.set(s.date,s));render()}catch(e){growth.innerHTML='<h2>Brotherhood Growth</h2><p class="bbb-note">'+esc(e.message)+'</p>'}
 try{const r=await fetch('./missing_creator.json?t='+Date.now());if(r.ok){const j=await r.json();lastUpload=j.last_upload_at||null;clock()}}catch(e){/* keep anonymous status */}}
 load();setInterval(load,300000);setInterval(clock,60000);
