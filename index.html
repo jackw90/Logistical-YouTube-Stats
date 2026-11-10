@@ -539,8 +539,8 @@ const CHANNEL_COLORS = {
 };
 
 function channelColor(channel) {
-  const index = CHANNEL_COLORS[channel] ?? 0;
-  return COLORS[index % COLORS.length];
+  const id = currentData?.channels?.find(c => c.channel === channel)?.channel_id;
+  return (window.BBB_PROFILE_COLORS?.[id]?.primary) || COLORS[(CHANNEL_COLORS[channel] ?? 0) % COLORS.length];
 }
 
 const num = x => Math.max(0, Number(x) || 0);
@@ -877,5 +877,6 @@ setInterval(load,60000);
 setInterval(updateClock,30000);
 updateClock();
 </script>
+  <script src="./bbb-analytics.js"></script>
 </body>
 </html>
