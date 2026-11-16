@@ -216,6 +216,42 @@
           "subscribers": 122000
         }
       ]
+    },
+    {
+      "date": "2026-11-16",
+      "recorded_at": "2026-11-16T03:11:39.854811+00:00",
+      "channels": [
+        {
+          "channel_id": "UCSlOWj_ZiUUqAyLBQ5pAaHQ",
+          "channel": "Logistical",
+          "views": 6287256,
+          "subscribers": 17800
+        },
+        {
+          "channel_id": "UCtuiEWmLhVjeuLbSDuCtnvA",
+          "channel": "Kokoplays MB",
+          "views": 42010057,
+          "subscribers": 122000
+        },
+        {
+          "channel_id": "UC7HxHIlGFNmN8fMlQw-TO2A",
+          "channel": "FallenShogun Gaming",
+          "views": 5776613,
+          "subscribers": 14100
+        },
+        {
+          "channel_id": "UC9p5xJotzMEsFqPu91sqXpw",
+          "channel": "VonGalactic",
+          "views": 3227119,
+          "subscribers": 26300
+        },
+        {
+          "channel_id": "UCnEXVvo2uWTgIIeHHG-fAZQ",
+          "channel": "Spektator",
+          "views": 6172653,
+          "subscribers": 122000
+        }
+      ]
     }
   ]
 }
